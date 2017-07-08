@@ -17,7 +17,7 @@ public class Register {
 	Statement stmt;
 	int i;
 	boolean registration_successful;
-	String username_exists = "false";
+	String username_exists;
 
 	// check user already exists
 	public String if_username_exists(String username) {
@@ -30,44 +30,55 @@ public class Register {
 
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-			while (rs != null && rs.next()) {
-				if (rs.getString(1).equalsIgnoreCase(username)) {
-					System.out.println("usrename_exists_in_database with the name\t\t" + rs.getString(1));
-					username_exists = "true";
-				} else {
-					System.out.println("This is a new User about to SignUp\t\t" + username);
+			while (rs != null && rs.next()) 
+			{
+				if (rs.getString(1).equalsIgnoreCase(username)) 
+				{
+					System.out.println("\nusername_exists_in_database with the name\t\t\t\t\t" + rs.getString(1));
+				  	username_exists = "true";
+				} 
+				
+				else
+				{
+					
+				  	//username_exists = "false";
+					
 				}
+				
 			}
+		   // System.out.println("\nThis is a new User about to SignUp\t\t\t\t\t\t" + username);
 
+           
 		}
 
 		catch (Exception ex) {
-			System.out.println("exception caught while reading username = " + ex);
+			System.out.println("\nexception caught while reading username = " + ex);
 
 		} finally {
 
-			DBconnection.closeMysqlConnection(con);
+			DBconnection.closeMysqlConnection(con, stmt, null);
 		}
 
 		return username_exists;
+		
 	}
 
 	// register
 	public boolean register_user(String username, String password) {
 		this.username = username;
 		this.password = password;
-		System.out.println("username =" + username + ",password=" + password + "about to register***");
+		System.out.println("\nusername =\t" + username + ",password=\t" + password + "about to register***");
 		try {
 			con = DBconnection.getMysqlConnection();
 			query = "insert into login_details values(?,?,?,?)";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, null);
+			pstmt.setInt(1, (int) Math.random() * 10);
 			pstmt.setString(2, username);
 			pstmt.setString(3, password);
 			pstmt.setString(4, "user");
 			i = pstmt.executeUpdate();
 			if (i > 0) {
-				System.out.println("User information successfully added to database********");
+				System.out.println("\nUser Registered successfully  to the  database********");
 			}
 			registration_successful = true;
 		} catch (SQLException ex) {
@@ -75,7 +86,7 @@ public class Register {
 			// null, ex);
 		} finally {
 
-			DBconnection.closeMysqlConnection(con);
+			DBconnection.closeMysqlConnection(con, null, pstmt);
 		}
 		return registration_successful;
 	}

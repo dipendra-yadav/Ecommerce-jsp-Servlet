@@ -2,7 +2,10 @@ package com.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBconnection {
 
@@ -22,9 +25,9 @@ public class DBconnection {
 		try {
 			String dbUrl = "jdbc:mysql://localhost:3306/ecommerce_db";
 			con = DriverManager.getConnection(dbUrl, "root", "");
-			System.out.println("Connection established for MySQL server");
+			System.out.println("\nConnection established for MySQL server");
 		} catch (Exception e) {
-			System.out.println("Database connection exception=" + e);
+			System.out.println("\nDatabase connection exception=" + e);
 		}
 		return con;
 
@@ -35,17 +38,35 @@ public class DBconnection {
 
 	}
 
-	public static void closeMysqlConnection(Connection con) {
+	public static void closeMysqlConnection(Connection con, Statement stmt, PreparedStatement pstmt) {
+
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+				System.out.println("\npstmt Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
+		try {
+			if (stmt != null) {
+				stmt.close();
+				System.out.println("\nstmt Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
 		try {
 			if (con != null) {
 				con.close();
-				System.out.println("Connection Closed***");
+				System.out.println("\nConnection Closed***");
 			}
 		} catch (SQLException e) {
-			System.out.println("The exception caught is = " + e);
+			System.out.println("\nThe exception caught is = " + e);
 		}
 
 	}
-	
 
 }

@@ -3,7 +3,12 @@ use database ecommerce_db;
 
 
 create table -->login_details
-create table login_details(id varchar(10),username varchar(25),password varchar(25),user varchar(25));
+
+create table login_details(id  int,username varchar(25),password varchar(25), role varchar(25));
+
+
+insert into login_details(1,'admin','admin','ADMIN');
+
 
 
 

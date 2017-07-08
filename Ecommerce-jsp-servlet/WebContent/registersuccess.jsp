@@ -28,7 +28,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Team - 03</a>
+				<a class="navbar-brand" href="#"></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
@@ -49,15 +49,23 @@
 
 	<div class="container">
 		<marquee>
-			<b style="color: white;"><h3>Welcome to Online Business
+			<b style="color: black;"><h3>Welcome to Online Business
 					Relationship Management, Connect to us and be one of us.We welcome
 					all new suppliers</h3></b>
 		</marquee>
 		<h2>Hello dear you have successfully registered. Please click on
 			the link to go to the main page and login again.</h2>
-		<a href="index.jsp"><input type="submit" value="back"></a>
+		<a href="./index.jsp"><input type="submit" value="back"></a>
 	</div>
 	<!-- /container -->
+
+	<footer class="text-center">
+		<div class="container col-lg-12 col-md-12 col-xs-12 no-padding">
+			<strong>Copyright &copy; 2017 <a>Deependra</a>.
+			</strong> All rights reserved.
+		</div>
+	</footer>
+
 
 
 </body>
