@@ -57,7 +57,7 @@ public class Controller extends HttpServlet {
 		String username_exists;
 		boolean result;
 
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		RequestDispatcher rd=null;
 
 		// registration
@@ -221,10 +221,81 @@ public class Controller extends HttpServlet {
         response.setHeader("Cache-Control", "no-store"); //when you hit back, it displays "Confirm page Submission"
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
+        session.invalidate();
         System.out.println("\nSession destroyed!");
         rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
 
+    
+    
+    //admin db insertion
+    if (request.getParameter("admin_category") != null) {
+        String classifier_name = (String) request.getParameter("admin_classifer_choice");
+        System.out.println("\n\nthe product selected by admin is = " + classifier_name);
+        session.setAttribute("classifier_name", classifier_name);
+        request.setAttribute("db_insertion_result","success");
+
+        String admin_mode = (String) session.getAttribute("admin_mode");
+        if (admin_mode.equals("insert")) {
+            rd = request.getRequestDispatcher("/admin_insert.jsp");
+            rd.forward(request, response);
+        }
+        if (admin_mode.equals("update")) {
+            rd = request.getRequestDispatcher("/admin_update.jsp");
+            rd.forward(request, response);
+        }
+        if (admin_mode.equals("remove")) {
+            rd = request.getRequestDispatcher("/admin_remove.jsp");
+            rd.forward(request, response);
+        }
+    }
+    
+    //admin db insert/update 
+    if (request.getParameter("admin_db_changes") != null) {
+        String admin_mode = (String) session.getAttribute("admin_mode"); //using admin mode to switch between insert/update
+        String classifier_name = (String) session.getAttribute("classifier_name");
+        String admin_product_name = request.getParameter("admin_product_name");
+        String admin_product_author_store_name = request.getParameter("admin_product_author_store_name");
+        String admin_product_description = request.getParameter("admin_product_description");
+        String admin_product_price = request.getParameter("admin_product_price");
+        if (admin_mode.equals("insert")) {
+            String db_insertion_result;
+            db_insertion_result = new Query().insert_data_into_db(classifier_name, admin_product_name, admin_product_author_store_name, admin_product_description, admin_product_price);
+            session.setAttribute("db_insertion_result", db_insertion_result);
+            rd = request.getRequestDispatcher("/admin_insert.jsp");
+            rd.forward(request, response);
+
+        }
+        if (admin_mode.equals("update")) {
+            String db_update_result="";
+            String admin_product_id=request.getParameter("admin_product_id");
+            db_update_result = new Query().update_data_into_db(classifier_name, admin_product_id, admin_product_name, admin_product_author_store_name, admin_product_description, admin_product_price);
+            session.setAttribute("db_update_result", db_update_result);
+            rd = request.getRequestDispatcher("/admin_update.jsp");
+            rd.forward(request, response);
+
+        }
+    }//admin db insertion/update ends here
+
+   
+    
+  //admin db delete
+    if (request.getParameter("admin_db_delete") != null) {            
+        String classifier_name = (String) session.getAttribute("classifier_name");
+        String admin_radio_selection = request.getParameter("admin_radio_delete");
+        //System.out.println("admin_radio_selection = " + admin_radio_selection);
+        String admin_id_or_name = request.getParameter("admin_id_or_name");
+        //System.out.println("admin_id_or_name = " + admin_id_or_name);
+        String db_deletion_result = "";
+        db_deletion_result = new Query().remove_data(classifier_name,admin_radio_selection,admin_id_or_name);
+        session.setAttribute("db_deletion_result",db_deletion_result);
+        rd = request.getRequestDispatcher("/admin_remove.jsp");
+        rd.forward(request, response);
+    }
+
+    
+    
+    
  }//ends doPost
 }//ends controller

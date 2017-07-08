@@ -114,7 +114,7 @@
 								// out.println("authentication = " + authentication);
 					%>
 					<div id="user_info">
-						Swagatam <span style="color: green"> <i> </i>
+						Welcome <span style="color: green"> <i> </i>
 						</span>
 					</div>
 					<form name="logout" action="Controller" method="Post">

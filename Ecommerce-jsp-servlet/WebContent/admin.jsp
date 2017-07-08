@@ -6,9 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="mycss.css" type="text/css">
-
+<!-- Bootstrap -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <link rel="stylesheet" href="css/dbStyle.css">
 <link href="font-awesome-4.4.0/css/font-awesome.css" rel="stylesheet">
@@ -35,8 +40,11 @@
                    -->
 		</div>
 	</div>
-	<br/><br/><br/><br/>
-	
+	<br />
+	<br />
+	<br />
+	<br />
+
 
 	<%
 		String admin_name = (String) session.getAttribute("name");
@@ -47,15 +55,14 @@
 				Welcome
 				<%=admin_name%>
 			</h2>
-			<br /> 
-			<br />
-		<form name="admin" action="Controller" method="Post">
-			<input class="form-group btn btn-default pull-right" type="submit"
-				name="signout" value="Logout">
-		</form>
-	
-					
-			
+			<br /> <br />
+			<form name="admin" action="Controller" method="Post">
+				<input class="form-group btn btn-default pull-right" type="submit"
+					name="signout" value="Logout">
+			</form>
+
+
+
 		</div>
 		<nav id="links">
 			<ul class="nav navbar-nav navbar-right">
@@ -73,20 +80,20 @@
 				</a></li>
 			</ul>
 		</nav>
-		
+
 	</div>
-	</div>
-	
-	
-	
-	
-	
-		<footer class="text-center">
-			<div class="container col-lg-12 col-md-12 col-xs-12 no-padding">
-				<strong>Copyright &copy; 2017 <a>Deependra</a>.
-				</strong> All rights reserved.
-			</div>
-		</footer>
-	
-	</body>
+
+
+
+
+
+
+	<footer class="text-center">
+		<div class="container col-lg-12 col-md-12 col-xs-12 no-padding">
+			<strong>Copyright &copy; 2017 <a>Deependra</a>.
+			</strong> All rights reserved.
+		</div>
+	</footer>
+
+</body>
 </html>

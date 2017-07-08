@@ -1,13 +1,32 @@
+
+Data  Base
+===============================
 create database ecommerce_db;
 use database ecommerce_db;
 
 
+Tables
+==============================
 create table -->login_details
+create table -->Books
+create table>-->electronics
+create table -->icecream
 
 create table login_details(id  int,username varchar(25),password varchar(25), role varchar(25));
-
-
 insert into login_details(1,'admin','admin','ADMIN');
+
+create table Books(books_id  varchar(10),book_name varchar(25),author_name varchar(25),book_description varchar(55),book_price varchar(25));
+create table electronics(electronics_id varchar(10),brand_name varchar(25),store_name varchar(25),brand_description varchar(25),brand_price varchar(55));
+create table icecream(icecream_id   varchar(10),icecream_name varchar(25),store_name varchar(25),icecream_description varchar(55),icecream_price varchar(25));
+
+
+
+
+
+
+
+
+
 
 
 

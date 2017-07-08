@@ -69,4 +69,44 @@ public class DBconnection {
 
 	}
 
+	public static void closeMysqlConnection(Connection con, Statement stmt, PreparedStatement pstmt, ResultSet rs) {
+
+		try {
+			if (rs != null) {
+				rs.close();
+				System.out.println("\nResultSet Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+				System.out.println("\npstmt Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
+		try {
+			if (stmt != null) {
+				stmt.close();
+				System.out.println("\nstmt Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
+		try {
+			if (con != null) {
+				con.close();
+				System.out.println("\nConnection Closed***");
+			}
+		} catch (SQLException e) {
+			System.out.println("\nThe exception caught is = " + e);
+		}
+
+	}
+
 }
