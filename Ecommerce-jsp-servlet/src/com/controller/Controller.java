@@ -23,6 +23,8 @@ public class Controller extends HttpServlet {
 	}
 
 	HashMap authentication_status_map = new HashMap();
+    HashMap map = new HashMap();
+
 	SessionBean bean = new SessionBean();
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -293,6 +295,24 @@ public class Controller extends HttpServlet {
         rd = request.getRequestDispatcher("/admin_remove.jsp");
         rd.forward(request, response);
     }
+    
+    
+    
+    //admin view all mode
+    if (request.getParameter("admin_view_all_products") != null) {            
+        String classifier_name = request.getParameter("admin_classifer_choice");
+        session.setAttribute("classifier_name",classifier_name);
+        System.out.println("\nclassifier_name from view all = " + classifier_name);
+        map = new Query().get_product_info(classifier_name);            
+        session.setAttribute("productname", map.get("productname"));
+        session.setAttribute("brandname", map.get("brandname"));
+        session.setAttribute("productdescription", map.get("productdescription"));
+        session.setAttribute("productprice", map.get("productprice"));            
+        session.setAttribute("productid", map.get("productid"));            
+        rd = request.getRequestDispatcher("/admin_view_all.jsp");
+        rd.forward(request, response);            
+    }     
+
 
     
     

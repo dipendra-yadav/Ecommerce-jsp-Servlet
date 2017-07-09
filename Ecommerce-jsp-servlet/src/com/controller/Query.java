@@ -41,7 +41,7 @@ public class Query {
             ArrayList<String> productid = new ArrayList<String>();
 
             while (rs != null && rs.next()) {
-                productname.add(rs.getString(1));       // using 4 objects to get 4 different values from a db         
+                productname.add(rs.getString(1));       // using 5 objects to get 5 different values from a db         
                 brandname.add(rs.getString(2));         // and storing it in a list
                 productdescription.add(rs.getString(3));
                 productprice.add(rs.getString(4));
@@ -55,14 +55,14 @@ public class Query {
             System.out.println("Getting product description from get_product_info = " + productdetails.getProduct_description());
             productdetails.setProduct_price(productprice);
             System.out.println("Getting product price from get_product_info = " + productdetails.getProduct_price());
-
+          */
 
             map.put("productname", productname);      //list values are stored in a map so, that, we could  
-            map.put("brandname", brandname);          //return the map object there by all the 4 list objects are passed. 
+            map.put("brandname", brandname);          //return the map object there by all the 5 list objects are passed. 
             map.put("productdescription", productdescription);
             map.put("productprice", productprice);
             map.put("productid",productid);
-*/        } catch (SQLException ex) {
+          } catch (SQLException ex) {
             //Logger.getLogger(Query.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DBconnection.closeMysqlConnection(con,null,ps,rs);

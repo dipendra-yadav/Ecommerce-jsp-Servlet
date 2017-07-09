@@ -4,19 +4,15 @@
 <head>
 <title>admin</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<link rel="stylesheet" href="mycss.css" type="text/css">
 <!-- Bootstrap -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<link rel="stylesheet" href="css/dbStyle.css">
-<link href="font-awesome-4.4.0/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
 	<div class="navbar-top navbar navbar-inverse navbar-fixed-top">
