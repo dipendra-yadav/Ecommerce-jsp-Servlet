@@ -17,7 +17,7 @@ public class Register {
 	Statement stmt;
 	int i;
 	boolean registration_successful;
-	String username_exists;
+	String username_exists="false";
 
 	// check user already exists
 	public String if_username_exists(String username) {

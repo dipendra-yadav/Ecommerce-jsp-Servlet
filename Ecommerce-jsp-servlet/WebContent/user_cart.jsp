@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home Page</title>
+<title>Home</title>
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,103 +13,200 @@
 
 </head>
 <body>
-
-
-
-	<%
-		String authentication = (String) session.getAttribute("authentication");
-		if (authentication == null) {
-	%>
-
-
-	<div id="login_in">
-		<form name="Home_Page" action="Controller" method="Post">
-			<div class="container pull-right">
-				<div class="form-group">
-					<label for="userName">Username:</label> <input type="text"
-						class="form-control" name="login_name" /> <label for="password">Password:</label>
-					<input type="password" class="form-control" name="login_password" />
-					<button type="submit" value="submit" name="login_submit"
-						class="btn btn-default" onclick="return form_validation()">Sign
-						in</button>
-
-					<a href="./registration.jsp" class="btn btn-default">Register</a>
-				</div>
-
-
-			</div>
-		</form>
-
-
-		<%
+	<!-- client side Validation -->
+	<script type="text/javascript">
+		function form_validation() {
+			var name = document.Login_Form.login_name.value;
+			var password = document.Login_Form.login_password.value;
+			var flag = true;
+			if (name == "") {
+				document.getElementById("invalid_login").style.color = "red";
+				document.getElementById('invalid_login').innerHTML = "UserName is mandatory!";
+				flag = false;
 			}
-			if (authentication != null) {
-				if (authentication.equals("Auth_Success")) {
-		%>
+			if (password == "") {
+				document.getElementById("invalid_login").style.color = "red";
+				document.getElementById('invalid_login').innerHTML = "Password is mandatory!";
+				flag = false;
+			}
+			return flag;
+		}
+	</script>
 
-		<div id="user_info">
-			<span style="color: cyan"> <i> Welcome ! <%=(session.getAttribute("name"))%>
-			</i>
-			</span>
+
+	<div class="container">
+		<div class="navbar-top navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Ecommerce </a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"></a></li>
+				</div>
+			</div>
 		</div>
 
-		<form name="logout" action="Controller" method="Post">
-			<input class="form-group btn btn-default pull-right" type="submit"
-				name="signout" value="Logout">
-		</form>
+
 		<%
-			} else {
+			String authentication = (String) session.getAttribute("authentication");
+			if (authentication == null) {
 		%>
-		<div id="wrong_user">
-			<span style="color: red"> Username/Password is wrong! </span>
-		</div>
-		<form name="Home_Page" action="Controller" method="Post">
-			<div id="login_in">
-				<div class="container pull-right">
-					<div class="form-group">
-						<label for="userName">Username:</label> <input type="text"
-							class="form-control" name="login_name" /> <label for="password">Password:</label>
-						<input type="password" class="form-control" name="login_password" />
-						<button type="submit" value="submit" name="login_submit"
-							class="btn btn-default" onclick="return form_validation()">Sign
-							in</button>
+		<br /> <br /> <br /> <br />
 
-						<a href="./registration.jsp" class="btn btn-default">Register</a>
+		<div id="login_in">
+			<div class="container">
+				<!-- To print client Side Errors -->
+				<div id="invalid_login" align="center"></div>
+
+
+
+
+				<div class="row">
+					<div id="login_block" class="col-sm-4 col-sm-offset-4"
+						style="background-color: #ffffff; opacity: 0.9;">
+						<h3 align="center">Log In</h3>
+						<form name="Login_Form" action="Controller" method="Post">
+							<div class="form-group">
+								<label for="userName">Username:</label> <input type="text"
+									class="form-control" name="login_name" /> <label
+									for="password">Password:</label> <input type="password"
+									class="form-control" name="login_password" />
+							</div>
+
+							<div class="form-group">
+								<button type="submit" value="submit" name="login_submit"
+									class="btn btn-default" onclick="return form_validation()">Sign
+									in</button>
+
+								<a href="./registration.jsp" class="btn btn-default">Register</a>
+							</div>
+						</form>
 					</div>
 
+					<%
+						}
+						if (authentication != null) {
+							if (authentication.equals("Auth_Success")) {
+					%>
 
-				</div>
-			</div>
-		</form>
-		<%
-			}
-			}
-		%>
+					<!-- Navigation -->
+					<nav class="navbar navbar-inverse navbar-fixed-top"
+						role="navigation">
+						<div class="container">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle"
+									data-toggle="collapse"
+									data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only">Toggle navigation</span> <span
+										class="icon-bar"></span> <span class="icon-bar"></span> <span
+										class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="#">Ecommerce</a>
+							</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse"
+								id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li><a href="user_cart.jsp">Home</a></li>
+									<li><a href="about_us.jsp">About Us</a></li>
+									<li><a href="seller.jsp"> Add Your Product </a></li>
+
+									<li><a href="service.jsp">Provide Services</a></li>
+									<li><a href="contact_us.jsp">Contact Us </a></li>
+								</ul>
+							</div>
+							<!-- /.navbar-collapse -->
+						</div>
+						<!-- /.container -->
+					</nav>
+					<br />
+					<br />
+					<br />
+					<br />
 
 
-		<div class="page-header">
+
+					<div id="user_info" align="center">
+						<span style="color: green"> <i> Welcome ! <%=(session.getAttribute("name"))%>
+						</i>
+						</span>
+					</div>
+
+					<form name="logout" action="Controller" method="Post">
+						<input class="form-group btn btn-default pull-right" type="submit"
+							name="signout" value="Logout">
+					</form>
+					<%
+						} else {
+					%>
+					<div id="wrong_user">
+						<span style="color: red"> Username/Password is wrong! </span>
+					</div>
+					<form name="Home_Page" action="Controller" method="Post">
+						<div id="login_in">
+							<div class="container pull-right">
+								<div class="form-group">
+									<label for="userName">Username:</label> <input type="text"
+										class="form-control" name="login_name" /> <label
+										for="password">Password:</label> <input type="password"
+										class="form-control" name="login_password" />
+									<button type="submit" value="submit" name="login_submit"
+										class="btn btn-default" onclick="return form_validation()">Sign
+										in</button>
+
+									<a href="./registration.jsp" class="btn btn-default">Register</a>
+								</div>
+
+
+							</div>
+						</div>
+					</form>
+					<%
+						}
+						}
+					%>
+
+					<br />
+					<br />
+					<br />
+					<br />
+
+
+
+
+
+
+					<!-- <div class="page-header">
 			<nav id="links">
 				<ul>
 					<li><a href="#"> Home </a></li>
-					<li><a href="seller.jsp"> Add Your Product </a></li>
 					<li><a href="about_us.jsp"> About Us </a></li>
 					<li><a href="contact_us.jsp">Contact Me </a></li>
 				</ul>
 
 			</nav>
 		</div>
+ -->
 
 
 
 
+					<footer class="text-center">
+						<div class="container col-lg-12 col-md-12 col-xs-12 no-padding">
+							<strong>Copyright &copy; 2017 <a>Deependra</a>.
+							</strong> All rights reserved.
+						</div>
+					</footer>
 
-		<footer class="text-center">
-			<div class="container col-lg-12 col-md-12 col-xs-12 no-padding">
-				<strong>Copyright &copy; 2017 <a>Deependra</a>.
-				</strong> All rights reserved.
-			</div>
-		</footer>
-
-	</div>
+				</div>
 </body>
 </html>
