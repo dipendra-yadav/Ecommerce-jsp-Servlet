@@ -15,7 +15,7 @@ public class Query {
     static String query;
     static ResultSet rs;
     static ArrayList list = new ArrayList();
-   // static ProductDetails productdetails = new ProductDetails();  //class name instantiation. 
+    static ProductDetails productdetails = new ProductDetails();  //To store the Product details
     static HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
     
     
@@ -24,38 +24,44 @@ public class Query {
         try {
             con = DBconnection.getMysqlConnection();
             if (classifier_name.equalsIgnoreCase("books")) {
-                query = "select book_name,author_name,book_description,book_price,books_id from books";
+                query = "select books_id,book_name,author_name,book_description,book_price from books";
             }
             if (classifier_name.equalsIgnoreCase("electronics")) {
-                query = "select brand_name,store_name,brand_description,brand_price,electronics_id from electronics";
+                query = "select electronics_id, brand_name,store_name,brand_description,brand_price from electronics";
             }
             if (classifier_name.equalsIgnoreCase("icecream")) {
-                query = "select icecream_name,store_name,icecream_description,icecream_price,icecream_id from icecream";
+                query = "select  icecream_id,icecream_name,store_name,icecream_description,icecream_price  from icecream";
             }
             ps = con.prepareStatement(query);
             rs = ps.executeQuery(query);
+            ArrayList<String> productid = new ArrayList<String>();
             ArrayList<String> productname = new ArrayList<String>();
             ArrayList<String> brandname = new ArrayList<String>();
             ArrayList<String> productdescription = new ArrayList<String>();
             ArrayList<String> productprice = new ArrayList<String>();
-            ArrayList<String> productid = new ArrayList<String>();
-
+           
             while (rs != null && rs.next()) {
-                productname.add(rs.getString(1));       // using 5 objects to get 5 different values from a db         
-                brandname.add(rs.getString(2));         // and storing it in a list
-                productdescription.add(rs.getString(3));
-                productprice.add(rs.getString(4));
-                productid.add(rs.getString(5));
-            }
-          /*  productdetails.setProduct_name(productname);
-            System.out.println("Getting product name from get_product_info = " + productdetails.getProduct_name());
+            	System.out.println("fectching Records!!");
+            	productid.add(rs.getString(1));
+                productname.add(rs.getString(2));       // using 5 objects to get 5 different values from a db         
+                brandname.add(rs.getString(3));         // and storing it in a list
+                productdescription.add(rs.getString(4));
+                productprice.add(rs.getString(5));
+               }
+            
+            
+            System.out.println("All product Names"+productname);
+            //storing Data in Session Bean
+            productdetails.setProduct_Id(productid);
+            productdetails.setProduct_name(productname);
+           // System.out.println("Getting product name from get_product_info = " + productdetails.getProduct_name());
             productdetails.setProduct_brand(brandname);
-            System.out.println("Getting product brand from get_product_info = " + productdetails.getProduct_brand());
+            //System.out.println("Getting product brand from get_product_info = " + productdetails.getProduct_brand());
             productdetails.setProduct_description(productdescription);
-            System.out.println("Getting product description from get_product_info = " + productdetails.getProduct_description());
+           // System.out.println("Getting product description from get_product_info = " + productdetails.getProduct_description());
             productdetails.setProduct_price(productprice);
-            System.out.println("Getting product price from get_product_info = " + productdetails.getProduct_price());
-          */
+            //System.out.println("Getting product price from get_product_info = " + productdetails.getProduct_price());
+          
 
             map.put("productname", productname);      //list values are stored in a map so, that, we could  
             map.put("brandname", brandname);          //return the map object there by all the 5 list objects are passed. 

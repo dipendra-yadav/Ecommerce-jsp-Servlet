@@ -16,6 +16,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.js"></script>
+	<link rel="icon" href="https://getbootstrap.com/favicon.ico">
 </head>
 <body>
 	<div class="navbar-top navbar navbar-inverse navbar-fixed-top">

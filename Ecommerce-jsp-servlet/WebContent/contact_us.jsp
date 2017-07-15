@@ -10,8 +10,29 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+<!-- DC 3D Buttons CSS -->
+<link rel="stylesheet" href="http://cdn.dcodes.net/2/3d_buttons/css/dc_3d_buttons.css" />
+<!-- DC Web Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons/dc_web_icons.css" />
+
+<!-- DC Web Icons II CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons2/dc_web_icons2.css" />
+
+<!-- DC Web Icons III CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons3/dc_web_icons3.css" />
+
+<!-- DC Pictogram Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_icons/dc_pictogram_icons.css" />
+
+<!-- DC Pictogram Fonts CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_fonts/dc_pictogram_fonts.css" />
 
 <title>Contact us</title>
+
+<style type="text/css">
+body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
+</style>
 
 </head>
 
@@ -121,9 +142,9 @@
 								<ul class="nav navbar-nav">
 									<li><a href="user_cart.jsp">Home</a></li>
 									<li><a href="about_us.jsp">About Us</a></li>
-									<li><a href="seller.jsp"> Add Your Product </a></li>
+									<li><a href="supplier.jsp"> Add Your Product </a></li>
 
-									<li><a href="service.jsp">Provide Services</a></li>
+									<li><a href="service.jsp">Services</a></li>
 									<li><a href="contact_us.jsp">Contact Us </a></li>
 								</ul>
 							</div>

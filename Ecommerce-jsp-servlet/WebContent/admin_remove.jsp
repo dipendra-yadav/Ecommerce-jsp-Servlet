@@ -11,7 +11,32 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+<!-- DC 3D Buttons CSS -->
+<link rel="stylesheet" href="http://cdn.dcodes.net/2/3d_buttons/css/dc_3d_buttons.css" />
+<!-- DC Web Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons/dc_web_icons.css" />
+
+<!-- DC Web Icons II CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons2/dc_web_icons2.css" />
+
+<!-- DC Web Icons III CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons3/dc_web_icons3.css" />
+
+<!-- DC Pictogram Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_icons/dc_pictogram_icons.css" />
+
+<!-- DC Pictogram Fonts CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_fonts/dc_pictogram_fonts.css" />
+
+<%@page errorPage="error.jsp"%>
+
+
 <title>admin_remove</title>
+<style type="text/css">
+body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
+</style>
+
 
 </head>
 <body>
@@ -33,38 +58,65 @@
        <%
 		String admin_name = (String) session.getAttribute("name");
 	   %>
+	   <div class="container">
+		<div class="navbar-top navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Ecommerce </a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"></a></li>
+				</div>
+			</div>
+		</div>
+	   
+	   
+	 <br/><br/>
 	   <div class="container text-center">
-	    <div class="row">
-		<h2>Welcome <%=admin_name%>
-		</h2>
-			
+		<div class="row">
+			<h2>Hi, &nbsp;<%=admin_name%>
+			</h2>
+			<br /> <br />
+		</div>
+				
 		<br /> 
 		<br />
-		<form name="admin" action="Controller" method="post">
-			<div class="logmeout">
-				<input type="submit" name="signout" class="form-group btn btn-default pull-right" value="Logout">
-			</div>
-		</form>
 		
-		</div>
-		<nav id="links">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="admin_insert.jsp" title="Insert"> <i
-						class="fa fa-plus-circle text-blue fa-2x"> </i> Insert Item
-				</a></li>
-				<li><a href="admin_update.jsp" title="Update"> <i
-						class="fa fa-pencil-square text-blue fa-2x"></i> Update Item
-				</a></li>
-				<li><a href="admin_remove.jsp" title="Delete"> <i
-						class="fa fa-trash-o text-blue fa-2x "></i> Delete Item
-				</a></li>
-				<li><a href="admin_view_all.jsp" title="View"> <i
-						class="fa fa-eye text-blue fa-2x"></i>view all
-				</a></li>
-			</ul>
-		</nav>
+		
+		    
+		        <a href="admin_insert.jsp" title="Insert" 
+						class="dc_3d_button gray">Insert Item
+				</a>
+				<a href="admin_update.jsp" title="Update" 
+						class="dc_3d_button gray"> Update Item
+				</a>
+				<a href="admin_remove.jsp" title="Delete" class="dc_3d_button gray"><span class="tea"></span>Delete Item
+				</a>
+				<a href="admin_view_all.jsp" title="View"
+						class="dc_3d_button gray">view all
+				</a>
+			
+		
+		    
 
-	    </div>
+	<form name="admin" action="Controller" method="post">
+		<div class="logmeout">
+			<input type="submit" name="signout"
+				class="form-group btn btn-default pull-right" value="Logout ">
+		</div>
+	</form>
+
+		    
+		    
+		    
 		
 		  <form name="admin" action="Controller" method="post">
 	          <div class="container">
@@ -103,7 +155,7 @@
 								</select>
 								<div class="help-block"></div>
 								<div class="form-group">
-									<button type="submit" value="Delete" name="admin_category" class="btn btn-default">Delete</button>
+									<button type="submit" value="Delete" name="admin_category" class="dc_3d_button gray">Delete</button>
 
 								</div>
 
@@ -133,7 +185,7 @@
 							
 						      <label>Id/Name </label>
                               <input type="text" name="admin_id_or_name" required /><br/>
-                             <button type="submit" value="Delete" class="btn btn-default" name="admin_db_delete">Delete</button><br />
+                             <button type="submit" value="Delete" class="dc_3d_button gray" name="admin_db_delete">Delete</button><br />
 						
 					 </form>
 						<%

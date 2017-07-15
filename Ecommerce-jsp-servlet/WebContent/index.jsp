@@ -20,8 +20,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.js"></script>
+<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+<style type="text/css">
+body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
+</style>
 
 </head>
+
 <body>
 
 	<!-- client side Validation -->
@@ -86,7 +92,7 @@
 
 				<div class="row">
 					<div id="login_block" class="col-sm-4 col-sm-offset-4"
-						style="background-color: #ffffff; opacity: 0.9;">
+						style="background-color:#; opacity: 0.9;">
 						<h3 align="center">Log In</h3>
 						<form name="Login_Form" action="Controller" method="Post">
 							<div class="form-group">

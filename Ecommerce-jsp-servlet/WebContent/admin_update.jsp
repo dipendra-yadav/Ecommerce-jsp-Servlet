@@ -10,10 +10,34 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+<!-- DC 3D Buttons CSS -->
+<link rel="stylesheet" href="http://cdn.dcodes.net/2/3d_buttons/css/dc_3d_buttons.css" />
+<!-- DC Web Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons/dc_web_icons.css" />
+
+<!-- DC Web Icons II CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons2/dc_web_icons2.css" />
+
+<!-- DC Web Icons III CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons3/dc_web_icons3.css" />
+
+<!-- DC Pictogram Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_icons/dc_pictogram_icons.css" />
+
+<!-- DC Pictogram Fonts CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_fonts/dc_pictogram_fonts.css" />
+
+<%@page errorPage="error.jsp"%>
+<style type="text/css">
+body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
+</style>
+
 
 </head>
 <body>
-	<%
+
+   <%
 		String classifier_name = "none";
 		session.setAttribute("admin_mode", "update");
 		String db_update_result = (String) session.getAttribute("db_update_result");
@@ -23,31 +47,46 @@
     <%
 		String admin_name = (String) session.getAttribute("name");
 	%>
-	<div class="container text-center">
+	
+	<div class="container">
+		<div class="navbar-top navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Ecommerce </a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"></a></li>
+				</div>
+			</div>
+		</div>
+	
+	<br/><br/>
+	   <div class="container text-center">
 		<div class="row">
-			<h2>Welcome<%=admin_name%>
+			<h2>Hi, &nbsp;<%=admin_name%>
 			</h2>
 			<br /> <br />
-			
 		</div>
-		<nav id="links">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="admin_insert.jsp" title="Insert"> <i
-						class="fa fa-plus-circle text-blue fa-2x"> </i> Insert Item
-				</a></li>
-				<li><a href="admin_update.jsp" title="Update"> <i
-						class="fa fa-pencil-square text-blue fa-2x"></i> Update Item
-				</a></li>
-				<li><a href="admin_remove.jsp" title="Delete"> <i
-						class="fa fa-trash-o text-blue fa-2x "></i> Delete Item
-				</a></li>
-				<li><a href="admin_view_all.jsp" title="View"> <i
-						class="fa fa-eye text-blue fa-2x"></i>view all
-				</a></li>
-			</ul>
-		</nav>
-
-	</div>
+			<a href="admin_insert.jsp" title="Insert" 
+						class="dc_3d_button gray">Insert Item
+				</a>
+				<a href="admin_update.jsp" title="Update" 
+						class="dc_3d_button gray"> Update Item
+				</a>
+				<a href="admin_remove.jsp" title="Delete" class="dc_3d_button gray"><span class="tea"></span>Delete Item
+				</a>
+				<a href="admin_view_all.jsp" title="View"
+						class="dc_3d_button gray">view all
+				</a>
+			
 		
 	<form name="admin" action="Controller" method="post">
 		<div class="logmeout">
@@ -59,7 +98,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4"
-					style="background-color: #ffffff; opacity: 0.9;">
+					style="background-color: #; opacity: 0.9;">
 					<br />
 					<h3>Select a product to update</h3>
 					<br /> <br />
@@ -94,7 +133,7 @@
 						<div class="help-block"></div>
 						<div class="form-group">
 							<button type="submit" value="Insert" name="admin_category"
-								class="btn btn-default">Insert</button>
+								class="dc_3d_button gray">Update</button>
 						</div>
 
 
@@ -102,6 +141,9 @@
 				</div>
 			</div>
 		</div>
+		
+	</div>
+	
 	</form>
 	<br />
 	<br />
@@ -138,7 +180,7 @@
 			</div>
 			<div class="form-group">
 				<button type="submit" value="Update" name="admin_db_changes"
-					class="btn btn-default">Update</button>
+					class="dc_3d_button gray">Update</button>
 			</div>
 		</form>
 		<%

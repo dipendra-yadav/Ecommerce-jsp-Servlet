@@ -1,3 +1,4 @@
+<%@page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,25 +10,29 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+<!-- DC 3D Buttons CSS -->
+<link rel="stylesheet" href="http://cdn.dcodes.net/2/3d_buttons/css/dc_3d_buttons.css" />
+<!-- DC Web Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons/dc_web_icons.css" />
+
+<!-- DC Web Icons II CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons2/dc_web_icons2.css" />
+
+<!-- DC Web Icons III CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/web_icons3/dc_web_icons3.css" />
+
+<!-- DC Pictogram Icons CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_icons/dc_pictogram_icons.css" />
+
+<!-- DC Pictogram Fonts CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/pictogram_fonts/dc_pictogram_fonts.css" />
 
 <title>about us</title>
+<style type="text/css">
+body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
+</style>
 
-<!-- Bootstrap Core CSS -->
-<link
-	href="Round%20About%20-%20Start%20Bootstrap%20Template_files/bootstrap.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link
-	href="Round%20About%20-%20Start%20Bootstrap%20Template_files/round-about.css"
-	rel="stylesheet">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -137,9 +142,9 @@
 								<ul class="nav navbar-nav">
 									<li><a href="user_cart.jsp">Home</a></li>
 									<li><a href="about_us.jsp">About Us</a></li>
-									<li><a href="seller.jsp"> Add Your Product </a></li>
+									<li><a href="supplier.jsp"> Add Your Product </a></li>
 
-									<li><a href="service.jsp">Provide Services</a></li>
+									<li><a href="service.jsp">Services</a></li>
 									<li><a href="contact_us.jsp">Contact Us </a></li>
 								</ul>
 							</div>

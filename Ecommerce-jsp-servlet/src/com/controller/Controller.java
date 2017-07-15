@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
-import com.controller.SessionBean;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
@@ -22,10 +21,29 @@ public class Controller extends HttpServlet {
 		super();
 	}
 
+	
+	
 	HashMap authentication_status_map = new HashMap();
     HashMap map = new HashMap();
-
-	SessionBean bean = new SessionBean();
+    
+    SessionBean bean = new SessionBean();
+    
+    ArrayList list = new ArrayList();
+    
+    //Cart Related
+    int total_cart_items = 0;
+    ArrayList products_in_cart_list = new ArrayList();
+    ArrayList<String> quantities_in_cart = new ArrayList<String>();
+    ArrayList user_product_name = new ArrayList();
+    CartDetails mycart = new CartDetails();
+    
+    
+    ProductDetails productdetails = new ProductDetails();
+    
+    
+    Query queryObject = new Query();
+    
+    
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -47,6 +65,15 @@ public class Controller extends HttpServlet {
 
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -199,27 +226,41 @@ public class Controller extends HttpServlet {
 
     if (request.getParameter("signout") != null) {
         System.out.println("\nReached log out in the controller!!");
-        //Query.clearSession();            
-       // session.setAttribute("authentication", null);
+       
+        session.setAttribute("authentication", null);
         session.removeAttribute("authentication"); //clearing the authentication
+       
+        
         session.setAttribute("name", null); // clearing the session name
-       /* session.removeAttribute("product_name");
         session.removeAttribute("productname");
+        
         session.removeAttribute("db_insertion_result");
         session.removeAttribute("db_deletion_result");
         session.removeAttribute("db_update_result");            
+        
         session.removeAttribute("productdescription");
         session.removeAttribute("brandname");
         session.removeAttribute("productprice");
+       
+        
+        session.setAttribute("quantity_in_cart", null);
         session.removeAttribute("quantity_in_cart");
+        
+        
         session.setAttribute("product_in_cart",null);
         session.removeAttribute("product_in_cart");
+        
+
         session.setAttribute("classifier_name", null);
         session.removeAttribute("classifier_name");
-       // total_cart_items = 0;
-        session.removeAttribute("total_cart_items");
-       */ 
+       
         
+       
+        total_cart_items = 0;
+        session.removeAttribute("total_cart_items");
+        
+        
+
         response.setHeader("Cache-Control", "no-store"); //when you hit back, it displays "Confirm page Submission"
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
@@ -229,6 +270,132 @@ public class Controller extends HttpServlet {
         rd.forward(request, response);
     }
 
+    
+    
+       //get the product info..
+       if (request.getParameter("product") != null)
+       {
+        String classifier_name = (String) request.getParameter("Item");
+        System.out.println("the product selected by user is = " + classifier_name);
+        map = new Query().get_product_info(classifier_name);
+        //sessionbean.setProduct_name((ArrayList) map.get("productname"));
+        //productdetails.setProduct_name((ArrayList) map.get("productname"));
+
+       // System.out.println("The session bean product name from controller = " + productdetails.getProduct_name());
+        System.out.println("product details object name = " + productdetails.getProduct_name());
+       /* System.out.println("product details object brand = " + productdetails.getProduct_brand());
+        System.out.println("product details object name = " + productdetails.getProduct_description());
+        System.out.println("product details object name = " + productdetails.getProduct_price());
+       */ 
+        session.setAttribute("productid", map.get("productid"));
+        session.setAttribute("productname", map.get("productname"));
+        session.setAttribute("brandname", map.get("brandname"));
+        session.setAttribute("productdescription", map.get("productdescription"));
+        session.setAttribute("productprice", map.get("productprice"));
+        //session.setAttribute("authentication", "Auth_Success"); //need to use a session bean here..
+        //need to use a session bean to add the user name as well. to remove the login , password text box popup
+        rd = request.getRequestDispatcher("/user_cart.jsp");
+        rd.forward(request, response);
+       } 
+
+       
+       
+     //get the cart details//Add To Cart
+       if (request.getParameter("cartdetails") != null) {
+           String itemnames[] = request.getParameterValues("quantity");                         
+           user_product_name = (ArrayList) session.getAttribute("productname");
+
+           for (int i = 0; i < itemnames.length; i++) {
+               System.out.println("\n\nThe values are = " + itemnames[i]);
+               System.out.println("\n\nThe product selected = " + user_product_name.get(i));
+               if (itemnames[i] == "") {
+                   System.out.println("This product  \" " + user_product_name.get(i) + " \"is not selected");//skipping item, if quantity is 0                    
+               } else {
+                   total_cart_items = total_cart_items + (Integer.parseInt(itemnames[i])); //---> convert string array integer                     
+                   quantities_in_cart.add(itemnames[i]);
+                   products_in_cart_list.add(user_product_name.get(i));
+                   System.out.println("produts obtained in the cart are = " + products_in_cart_list);
+               }
+           }
+        
+       
+           DomParsing.writexml(quantities_in_cart, products_in_cart_list);
+           session.setAttribute("total_cart_items", total_cart_items);
+           session.setAttribute("product_in_cart", products_in_cart_list);
+           session.setAttribute("quantity_in_cart", quantities_in_cart);
+           	
+           
+           
+           System.out.println("cart products= " + session.getAttribute("product_in_cart"));
+           System.out.println("cart quantity = " + session.getAttribute("quantity_in_cart"));
+           rd = request.getRequestDispatcher("/user_cart.jsp");
+           rd.forward(request, response);
+
+           
+       }
+           
+       
+       //checkout cart
+       if (request.getParameter("checkout_cart") != null) {
+    	   rd = request.getRequestDispatcher("/loaded_cart.jsp");
+           rd.forward(request, response);
+       }
+       
+       
+       //payment options
+       if (request.getParameter("payment") != null) {
+           rd = request.getRequestDispatcher("/payment.jsp");
+           rd.forward(request, response);
+       }
+       
+       //payment details collection
+       if (request.getParameter("place_order") != null) {
+           //get credit card information
+           String card_type = (String) request.getParameter("card_type");
+           String card_name = request.getParameter("card_name");
+           String expiration_month = (String) request.getParameter("expiration_month");
+           String expiration_year = (String) request.getParameter("expiration_year");
+
+
+           //get billing information
+           String fullname = request.getParameter("fullname");
+           String address = request.getParameter("address");
+           String country = request.getParameter("country");
+           String zipcode = request.getParameter("zipcode");
+           session.setAttribute("Order_Confirmation", "Confirmed");
+           String Confirmation_Status = (String) session.getAttribute("Order_Confirmation");
+           System.out.println("Confirmation_Status = " + Confirmation_Status); //setting the order status as confirmed as no errors so far..
+           DomParsing.card_n_shipping_info(card_type, card_name, expiration_month, expiration_year, fullname, address, country, zipcode);
+           rd = request.getRequestDispatcher("/payment.jsp");
+           rd.forward(request, response);
+       } //payment and billing information ends here
+
+
+       
+       
+
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+
+    
+    
+    
+    
     
     
     //admin db insertion
