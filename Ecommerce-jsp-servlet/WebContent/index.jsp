@@ -158,7 +158,7 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/wood/w12.jpg'); }
 
 							<div class="row">
 								<div id="login_block" class="col-sm-4 col-sm-offset-4"
-									style="background-color: #ffffff; opacity: 0.9;">
+									style="background-color: #; opacity: 0.9;">
 									<h3 align="center">Log In</h3>
 									<form name="Login_Form" action="Controller" method="Post">
 										<div class="form-group">
